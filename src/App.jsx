@@ -62,7 +62,7 @@ const columns = [
 const App = () => {
 
   const {
-    getTableProps,
+    getTableProps,     // this is return to some props 
     getTableBodyProps, 
     headerGroups,
     rows,
@@ -73,12 +73,19 @@ const App = () => {
   })
 
 
+  const props = getTableProps()
+
+
+
+/
+
 
   return (
     <div className='ccontainer'>
-      <table>
+      <table {...props}>  {/* you can write like this:  <table {...getTableProps()}> */}
         <thead>
           <tr>
+            
             <th>Id</th>
             <th>Gender</th>
             <th>Salary</th>
