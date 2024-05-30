@@ -1,5 +1,5 @@
 import React from 'react'
-import {useTable} from "react-table"
+import {useTable, useSortBy} from "react-table"
 
 
 const data = [
@@ -26,8 +26,8 @@ const data = [
   },
   {
     id:1,
-    gender:"Male",
-    salary:40000
+    gender:"feMale",
+    salary:20000
   },
   {
     id:1,
@@ -70,7 +70,9 @@ const App = () => {
   } = useTable({
     columns,
     data
-  })
+    
+  },
+useSortBy)
 
 
   const props = getTableProps()
@@ -94,7 +96,7 @@ const App = () => {
                 
                 {
                   hg.headers.map((header) => (
-                    <th {...header.getHeaderProps()}>
+                    <th {...header.getHeaderProps(header.getSortByToggleProps())}>
                       {
                         header.render("Header")    //  show the UI in Header  
                       }
@@ -132,17 +134,7 @@ const App = () => {
           }
 
         </tbody>
-        {/* <tbody>
-          {
-            data.map((i) => (
-              <tr key={i.id}>
-                <td>{i.id}</td>
-                <td>{i.gender}</td>
-                <td>{i.salary}</td>
-              </tr>
-            ))
-          }
-        </tbody> */}
+        
       </table>
 
     </div>
