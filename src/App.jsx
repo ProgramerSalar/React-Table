@@ -30,9 +30,9 @@ const data = [
     salary:20000
   },
   {
-    id:1,
-    gender:"Male",
-    salary:40000
+    id:10,
+    gender:"Robot",
+    salary:4
   },
 
 ]
@@ -99,6 +99,15 @@ useSortBy)
                     <th {...header.getHeaderProps(header.getSortByToggleProps())}>
                       {
                         header.render("Header")    //  show the UI in Header  
+                      }
+                      {
+                        header.isSorted && (
+                          <span>
+                            {
+                              header.isSortedDesc ? " D" : " A"
+                            }
+                          </span>
+                        )
                       }
                     </th>
                   ))
