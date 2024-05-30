@@ -74,10 +74,11 @@ const App = () => {
 
 
   const props = getTableProps()
+  
 
 
 
-/
+
 
 
   return (
@@ -89,11 +90,17 @@ const App = () => {
           {
             headerGroups.map((hg) => (
 
-              <tr {...hg.props}>
-            
-              <th>Id</th>
-              <th>Gender</th>
-              <th>Salary</th>
+              <tr {...hg.getHeaderGroupProps()}>
+                
+                {
+                  hg.headers.map((header) => (
+                    <th {...header.getHeaderProps()}>
+                      {
+                        header.render("Header")    //  show the UI in Header  
+                      }
+                    </th>
+                  ))
+                }
             </tr>
             ))
           }
@@ -102,7 +109,7 @@ const App = () => {
 
 
         </thead>
-        <tbody>
+        {/* <tbody>
           {
             data.map((i) => (
               <tr key={i.id}>
@@ -112,7 +119,7 @@ const App = () => {
               </tr>
             ))
           }
-        </tbody>
+        </tbody> */}
       </table>
 
     </div>
