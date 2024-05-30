@@ -191,7 +191,10 @@ const App = () => {
     nextPage,
     previousPage,
     canPreviousPage,
-    canNextPage
+    canNextPage,
+    state:{pageIndex},    // if you give the page of index 
+    pageCount,             // if you are count the page
+    gotoPage,      
   } = useTable({
     columns,
     data
@@ -273,8 +276,11 @@ usePagination
         
       </table>
       <div>
+        <button disabled={pageIndex === 0} onClick={() => gotoPage(0)}>First</button>
         <button disabled={!canPreviousPage} onClick={previousPage}>Prev</button>
+        <span>{pageIndex+1} of {pageCount}</span>
         <button disabled={!canNextPage} onClick={nextPage}>Next</button>
+        <button disabled={pageIndex === pageCount - 1} onClick={() => gotoPage(pageCount - 1)}>last</button>
       </div>
 
     </div>
