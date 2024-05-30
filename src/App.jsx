@@ -1,9 +1,129 @@
 import React from 'react'
-import {useTable, useSortBy} from "react-table"
+import {useTable, useSortBy, usePagination} from "react-table"
 
 
 const data = [
 
+  {
+    id:1,
+    gender:"Male",
+    salary:40000
+  },
+  {
+    id:1,
+    gender:"Male",
+    salary:40000
+  },
+  {
+    id:1,
+    gender:"Male",
+    salary:40000
+  },
+  {
+    id:1,
+    gender:"Male",
+    salary:40000
+  },
+  {
+    id:1,
+    gender:"feMale",
+    salary:20000
+  },
+  {
+    id:10,
+    gender:"Robot",
+    salary:4
+  },
+  {
+    id:1,
+    gender:"Male",
+    salary:40000
+  },
+  {
+    id:1,
+    gender:"Male",
+    salary:40000
+  },
+  {
+    id:1,
+    gender:"Male",
+    salary:40000
+  },
+  {
+    id:1,
+    gender:"Male",
+    salary:40000
+  },
+  {
+    id:1,
+    gender:"feMale",
+    salary:20000
+  },
+  {
+    id:10,
+    gender:"Robot",
+    salary:4
+  },
+  {
+    id:1,
+    gender:"Male",
+    salary:40000
+  },
+  {
+    id:1,
+    gender:"Male",
+    salary:40000
+  },
+  {
+    id:1,
+    gender:"Male",
+    salary:40000
+  },
+  {
+    id:1,
+    gender:"Male",
+    salary:40000
+  },
+  {
+    id:1,
+    gender:"feMale",
+    salary:20000
+  },
+  {
+    id:10,
+    gender:"Robot",
+    salary:4
+  },
+  {
+    id:1,
+    gender:"Male",
+    salary:40000
+  },
+  {
+    id:1,
+    gender:"Male",
+    salary:40000
+  },
+  {
+    id:1,
+    gender:"Male",
+    salary:40000
+  },
+  {
+    id:1,
+    gender:"Male",
+    salary:40000
+  },
+  {
+    id:1,
+    gender:"feMale",
+    salary:20000
+  },
+  {
+    id:10,
+    gender:"Robot",
+    salary:4
+  },
   {
     id:1,
     gender:"Male",
@@ -65,14 +185,21 @@ const App = () => {
     getTableProps,     // this is return to some props 
     getTableBodyProps, 
     headerGroups,
-    rows,
-    prepareRow
+    // rows,
+    page,    // you should take page if you get the pagination and also map the page not for the row       
+    prepareRow,
+    nextPage,
+    previousPage,
+    canPreviousPage,
+    canNextPage
   } = useTable({
     columns,
     data
     
   },
-useSortBy)
+useSortBy,
+usePagination
+)
 
 
   const props = getTableProps()
@@ -86,7 +213,7 @@ useSortBy)
   return (
     <div className='ccontainer'>
       <table {...props}>  {/* you can write like this:  <table {...getTableProps()}> what is ... this ? ... -> this is spread  */}
-        <thead>
+        <thead className='Heading'>
 
           {/* before <tr> tag i will write the headerGroups  */}
           {
@@ -96,7 +223,7 @@ useSortBy)
                 
                 {
                   hg.headers.map((header) => (
-                    <th {...header.getHeaderProps(header.getSortByToggleProps())}>
+                    <th {...header.getHeaderProps(header.getSortByToggleProps())} className='content-tag'>
                       {
                         header.render("Header")    //  show the UI in Header  
                       }
@@ -122,13 +249,13 @@ useSortBy)
         </thead>
         <tbody {...getTableBodyProps()}>
           {
-            rows.map((row) => {
+            page.map((row) => {
               prepareRow(row);
               return(
                 <tr {...row.getRowProps()}>
                   {
                     row.cells.map((cell) => (
-                      <td {...cell.getCellProps()}>
+                      <td {...cell.getCellProps()} className='content-tag'>
                         {
                           cell.render("Cell")
                         }
@@ -145,6 +272,10 @@ useSortBy)
         </tbody>
         
       </table>
+      <div>
+        <button disabled={!canPreviousPage} onClick={previousPage}>Prev</button>
+        <button disabled={!canNextPage} onClick={nextPage}>Next</button>
+      </div>
 
     </div>
   )
