@@ -197,7 +197,12 @@ const App = () => {
     gotoPage,      
   } = useTable({
     columns,
-    data
+    data,
+    initialState:{
+      pageSize:5,  // how many pagesize you want 
+      // pageIndex:3   // what is you first page index, jab jab reload karenge page number 5 par hi rahega  
+
+    }  
     
   },
 useSortBy,
