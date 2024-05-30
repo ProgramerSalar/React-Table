@@ -82,14 +82,25 @@ const App = () => {
 
   return (
     <div className='ccontainer'>
-      <table {...props}>  {/* you can write like this:  <table {...getTableProps()}> */}
+      <table {...props}>  {/* you can write like this:  <table {...getTableProps()}> what is ... this ? ... -> this is spread  */}
         <thead>
-          <tr>
+
+          {/* before <tr> tag i will write the headerGroups  */}
+          {
+            headerGroups.map((hg) => (
+
+              <tr {...hg.props}>
             
-            <th>Id</th>
-            <th>Gender</th>
-            <th>Salary</th>
-          </tr>
+              <th>Id</th>
+              <th>Gender</th>
+              <th>Salary</th>
+            </tr>
+            ))
+          }
+
+
+
+
         </thead>
         <tbody>
           {
